@@ -1,54 +1,70 @@
 # Wi-Fi Security Experiment: WPA2 vs WPA3
 
-> **Educational lab experiment** comparing WPA2 and WPA3 Wi-Fi security using Wifite.
+## Overview
+This repository documents a controlled educational lab experiment comparing the security behavior of WPA2-PSK and WPA3-SAE wireless networks.  
+The focus is on observing how offline dictionary attacks work against WPA2 and why the same approach fails against WPA3.
+
+All testing was performed in a private, permitted lab environment.
 
 ---
 
-##  Objective
-Conduct a controlled lab experiment to explore how **WPA2-PSK** and **WPA3-SAE** react to offline dictionary attacks, and to observe the behavior of tools like **Wifite** in each scenario. All testing was performed in a private, permitted environment.
+## Objective
+- Analyze the effectiveness of offline dictionary attacks against WPA2-PSK.
+- Observe WPA3-SAE behavior when similar attack techniques are attempted.
+- Evaluate the practical limitations of tools like Wifite in modern Wi-Fi security.
 
 ---
 
-##  Tools & Lab Setup
-- **OS:** Kali Linux with built-in wireless adapter  
-- **Tool:** Wifite (leveraging Aircrack-ng for cracking)  
-- **Test Networks:**
-  - WPA2-PSK secured network (numeric-only password)
-  - WPA3-SAE secured network (similar password setup)
+## Lab Environment
+- Operating System: Kali Linux
+- Wireless Adapter: Built-in adapter (monitor mode supported)
+- Tooling:
+  - Wifite
+  - Aircrack-ng (via Wifite)
+- Test Networks:
+  - WPA2-PSK (numeric-only password)
+  - WPA3-SAE (comparable password policy)
 
 ---
 
-##  Experiment Steps
-1. **WPA2 Testing**
-   - Captured the WPA2 handshake with Wifite.
-   - Used a numeric-only wordlist for password cracking.
-   - Successfully cracked the WPA2 password when it was purely numeric.
+## Experiment Methodology
 
-2. **WPA3 Testing**
-   - Attempted the same process against WPA3.
-   - Wifite failed, as WPA3 uses **SAE**, which resists offline cracking.
+### WPA2 Testing
+- Captured a valid WPA2 four-way handshake using Wifite.
+- Performed an offline dictionary attack using a numeric-only wordlist.
+- Successfully recovered the password due to weak password complexity.
 
----
-
-##  Results & Insights
-- **WPA2 vulnerability**: Offline dictionary attacks effective when passwords are weak (e.g., numeric only).
-- **WPA3 strength**: SAE-based authentication resists this type of attack.
-- **Wordlist significance**: Cracking success depends on complexity and coverage.
-- Wifite is **useful for learning WPA2 weaknesses**, but not effective against WPA3.
+### WPA3 Testing
+- Attempted the same approach against a WPA3-SAE network.
+- Wifite failed to proceed with offline cracking.
+- No reusable handshake was available for dictionary attacks.
 
 ---
 
-##  Key Learnings
-- Use **strong, complex passwords** (mix of letters, numbers, symbols).
-- WPA3 adoption significantly improves Wi-Fi security.
-- Ethical hacking experiments must be confined to controlled environments.
-- Tools like `crunch` can help generate comprehensive wordlists for realistic testing.
+## Results and Observations
+- WPA2 is vulnerable to offline dictionary attacks when weak passwords are used.
+- WPA3’s SAE authentication prevents traditional offline cracking.
+- Password complexity plays a critical role in WPA2 security.
+- Wifite is effective for learning WPA2 weaknesses but ineffective against WPA3 by design.
 
 ---
 
-##  Disclaimer
-This experiment was conducted strictly for **educational and ethical purposes** in a controlled lab setup. It does **not** endorse or promote unauthorized access to any networks.
+## Key Takeaways
+- Numeric-only or simple passwords significantly weaken WPA2 security.
+- WPA3 adoption provides meaningful protection against offline attacks.
+- Strong passphrases (length, symbols, mixed case) remain essential.
+- Ethical testing must always be limited to authorized environments.
+- Wordlist quality directly affects cracking success in WPA2 scenarios.
 
 ---
 
+## Disclaimer
+This project was conducted strictly for educational purposes within a controlled lab environment.  
+No unauthorized networks were targeted or accessed.
 
+---
+
+## References
+- IEEE 802.11 WPA3 Specification
+- Aircrack-ng Documentation
+- Wifite Project
